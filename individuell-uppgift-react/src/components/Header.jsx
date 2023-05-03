@@ -73,7 +73,7 @@ const Header = () => {
             <AiOutlineUser className="menu-icon" />
           </div>
         </div>
-        <input type="text" placeholder="Sök produkt eller varumärke" className="search-input" />
+        <input type="text" placeholder="Sök produkt eller varumärke" className="search-input-desktop" />
         <div className="under-cat">
           <Link to="/allaprodukter" className="all-products">Alla produkter</Link>
           {BurgerMenuData.map((textItem, index) => {

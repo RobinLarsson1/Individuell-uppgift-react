@@ -52,6 +52,21 @@ header {
 	height: 2em;
 	margin-bottom: 1em;
 	font-size: 0.8em;
+	border-radius: 25px;
+	border: none;
+	padding: 1em;
+}
+.search-input-desktop {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 50vw;
+	height: 3em;
+	margin-bottom: 1em;
+	font-size: 0.8em;
+	padding: 1em;
+	border-radius: 25px;
+	border: none;
 }
 
 .under-cat {
