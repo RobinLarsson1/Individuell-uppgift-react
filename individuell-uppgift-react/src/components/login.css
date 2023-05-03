@@ -1,0 +1,23 @@
+.login-main {
+	display: flex;
+	justify-content: center;
+}
+.login-container {
+	height: 50vh;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 1em;
+	border: 1px solid black;
+}
+.input-fields {
+	min-width: 30vw;
+	height: 3em;
+	padding: 1em;
+}
+.input-container {
+	display: flex;
+	flex-direction: column;
+	margin: 1em;
+}
