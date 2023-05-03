@@ -1,22 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './Home.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBox, faGlobe } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const Home = () => {
 
 	return (
 		<div className="home">
-			<div className="cat-container">
-			<img src='https://cms.accuweather.com/wp-content/uploads/2018/06/surf-4.jpg' alt="surf image" className="home-img"/>
-			<Link to="/surfing" className="cat-text">Surfing</Link>
+			<div className="home-container">
+				<img src='https://cms.accuweather.com/wp-content/uploads/2018/06/surf-4.jpg' alt="surf image" className="home-img" />
+				<Link to="/allaprodukter" className="home-text">Surfboards</Link>
 			</div>
-			<div className="cat-container">
-			<img src='https://www.aletscharena.ch/fileadmin/_processed_/a/f/csm_gleitschirmfliegen-herbst-aletsch-arena-06_0135cb08b8.jpg' alt="paragliding image" className="home-img"/>
-			<Link to="/paragliding" className="cat-text">Paragliding</Link>
+			<div className="home-container">
+				<img src='https://contents.mediadecathlon.com/p1622363/k$13144092cec96de346c024870943bd14/1800x0/2882pt1920/5764xcr3842/longboard_skateboard_decathlon_skateboarding_cruising_skate_carve_540_carver_carving_carve.jpg?format=auto' alt="longboarding image" className="home-img" />
+				<Link to="/paragliding" className="home-text">Longboards / Cruisers</Link>
 			</div>
-			<div className="cat-container">
-			<img src='https://tribu.co/app/uploads/sites/10/2020/06/191808_Jackalope_DanMathieuPhoto_5639.jpg' alt="skateboarding image" className="home-img"/>
-			<Link to="/skateboarding" className="cat-text">Skateboarding</Link>
+			<div className="home-container">
+				<img src='https://tribu.co/app/uploads/sites/10/2020/06/191808_Jackalope_DanMathieuPhoto_5639.jpg' alt="skateboarding image" className="home-img" />
+				<Link to="/skateboarding" className="home-text">Skateboards</Link>
+			</div>
+			<div className="home-container">
+				<img src='https://www.thekiteboarder.com/wp-content/uploads/2009/11/21-LOAD-POP-VINCENT-BERGERON-4055-scaled.jpg' alt="kiteboarding image" className="home-img" />
+				<Link to="/skateboarding" className="home-text">Kiteboards</Link>
 			</div>
 		</div>
 	)

@@ -1,16 +1,7 @@
-// add several products to API
-
-
 import { url, shopId } from "./constants.js"
 import productData from "./productData.js"
 
-// const data = {
-// 	action: 'add-product',
-// 	name: 'Water pistol',
-// 	description: 'Fires cooling streams of water at unsuspecting foes.',
-// 	picture: 'insert web URL here',
-// 	shopid: shopId
-// }
+
 async function addProduct(oneProduct) {
 
 

@@ -12,7 +12,11 @@ export const router = createHashRouter([
 	    children: [
 			{
 				path: '',
-				element: <Login />
+				element: <Home />
+			},
+			{
+				path: 'allaprodukter',
+				element: <ViewItems />
 			}
 		]
 	}
