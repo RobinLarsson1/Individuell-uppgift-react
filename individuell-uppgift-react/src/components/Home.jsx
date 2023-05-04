@@ -1,22 +1,41 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import './Home.css'
+import './styling/Home.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBox, faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { useRecoilState } from "recoil";
+import { productState } from "../data/productsAtom";
+import { useEffect } from "react";
+import { url, shopId } from "../data/constants"
 
 
 
 const Home = () => {
+	const [products, setProducts] = useRecoilState(productState);
+
+	useEffect(() => {
+		async function fetchProducts() {
+		  try {
+			const response = await fetch(url + '?action=get-products&shopid=' + shopId);
+			const data = await response.json();
+			setProducts([...data]); // Skapa en kopia av produkterna
+			
+		  } catch (error) {
+			console.error('Error fetching products:', error);
+		  }
+		}
+		fetchProducts();
+	  }, [onload]);
 
 	return (
 		<div className="home">
 			<div className="home-container">
 				<img src='https://cms.accuweather.com/wp-content/uploads/2018/06/surf-4.jpg' alt="surf image" className="home-img" />
-				<Link to="/allaprodukter" className="home-text">Surfboards</Link>
+				<Link to="/surfboards" className="home-text">Surfboards</Link>
 			</div>
 			<div className="home-container">
 				<img src='https://contents.mediadecathlon.com/p1622363/k$13144092cec96de346c024870943bd14/1800x0/2882pt1920/5764xcr3842/longboard_skateboard_decathlon_skateboarding_cruising_skate_carve_540_carver_carving_carve.jpg?format=auto' alt="longboarding image" className="home-img" />
-				<Link to="/paragliding" className="home-text">Longboards / Cruisers</Link>
+				<Link to="/longboards" className="home-text">Longboards / Cruisers</Link>
 			</div>
 			<div className="home-container">
 				<img src='https://tribu.co/app/uploads/sites/10/2020/06/191808_Jackalope_DanMathieuPhoto_5639.jpg' alt="skateboarding image" className="home-img" />
@@ -24,7 +43,7 @@ const Home = () => {
 			</div>
 			<div className="home-container">
 				<img src='https://www.thekiteboarder.com/wp-content/uploads/2009/11/21-LOAD-POP-VINCENT-BERGERON-4055-scaled.jpg' alt="kiteboarding image" className="home-img" />
-				<Link to="/skateboarding" className="home-text">Kiteboards</Link>
+				<Link to="/kiteboards" className="home-text">Kiteboards</Link>
 			</div>
 		</div>
 	)

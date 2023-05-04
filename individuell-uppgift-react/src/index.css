@@ -27,21 +27,37 @@ header {
 	width: 100%;
 }
 
-.logo {
+.logo-mobile {
 	width: 10em;
 	padding: 1em;
 }
 
-.top-header, .desktop-header {
+.logo-desktop {
+	width: 15em;
+	padding: 1em;
+}
+
+.top-header,
+.desktop-header {
 	display: flex;
 	align-items: center;
 	width: 90vw;
 	justify-content: space-between;
 }
 
-.menu-icon {
+.menu-icon-mobile {
 	color: var(--background-white);
 	font-size: 1.5em;
+}
+
+.menu-icon-desktop {
+	color: var(--background-white);
+	font-size: 2em;
+	transition: all 0.5s;
+}
+
+.menu-icon-desktop:hover {
+	transform: scale(1.2);
 }
 
 .search-input {
@@ -49,13 +65,14 @@ header {
 	align-items: center;
 	justify-content: center;
 	width: 60vw;
-	height: 2em;
+	height: 3em;
 	margin-bottom: 1em;
 	font-size: 0.8em;
 	border-radius: 25px;
 	border: none;
 	padding: 1em;
 }
+
 .search-input-desktop {
 	display: flex;
 	align-items: center;
@@ -82,104 +99,56 @@ header {
 	color: var(--background-white);
 	text-decoration: none;
 }
+
 .desktop-header-text:hover {
 	text-decoration: underline;
 }
+
 .header-link {
 	text-decoration: none;
 	font-size: 1em;
 	transition: all 0.5s;
 }
+
 .header-link:hover {
 	transform: scale(1.1);
 }
+
 .all-products {
 	color: #FFC604;
 	text-decoration: none;
 	transition: all 0.5s;
 }
+
 .all-products:hover {
 	transform: scale(1.1);
 	text-decoration: underline;
 }
+
 .icon-div {
 	width: 6em;
 	display: flex;
 	justify-content: space-between;
 }
+
 /* Slut på header */
 
 /* Main */
-.product-container {
-	display: grid;
-	grid-template-columns: 1fr;
-	align-items: center;
-	width: 100vw;
-}
-
-.product-card {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin: 1em;
-	width: 15em;
-	border: 1px solid black;
-	cursor: pointer;
-}
-
-.product-card>h3 {
-	font-size: 1.2em;
-}
-
-.product-img {
-	width: 100%;
-	z-index: -1;
-}
-
-ul {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+.no-results {
+	grid-column: 1 / -1; /* Spänner över alla kolumner */
 	text-align: center;
-}
-
-.description {
-	color: #6f747d;
-	font-size: 0.9em;
-}
-
-.price {
-	font-weight: 700;
-}
-
-h1 {
-	font-size: 1.5em;
-	margin: 1em 0em;
-	text-align: center;
-}
-
-button {
-	height: 2em;
-}
-
-.overlay > * {
-	display: flex;
-	justify-content: start;
-	align-items: center;
-	flex-direction: column;
-	padding: 1em;
-}
-.cat-text:hover {
-	text-decoration: underline;
-	transition: all 0.5;
-}
+	margin-top: 20px;
+	text-decoration: none;
+	list-style-type: none;
+  }
+  
 
 /* Hamburgarmeny */
 .overlay.active {
 	display: flex;
 	flex-direction: column;
 }
+
 .overlay {
 	background-color: white;
 	width: 15em;
@@ -192,13 +161,20 @@ button {
 	/* right: -100%; */
 	transition: 850ms;
 	z-index: 99;
+	border-radius: 10px;
 }
 
 .overlay.active {
 	right: 0;
 	transition: 350ms;
 }
+
 .cat-text {
 	text-decoration: none;
+	color: var(--dark-grey);
+}
+
+.cat-h2 {
+	font-size: 2em;
 	color: var(--dark-grey);
 }

@@ -1,52 +1,44 @@
-import React, {useEffect} from "react";
-import { useRecoilState } from "recoil";
-import { productState } from "../data/productsAtom";
-import  productData  from "../data/productData";
+import React, { useEffect } from "react";
+import { productState, searchState } from "../data/productsAtom";
+import productData from "../data/productData";
 import { useState } from "react";
-
-
-const shopId = 1011;
-const url = 'https://www.forverkliga.se/JavaScript/api/fe/'
-
-
-
+import { useRecoilState, useRecoilValue } from "recoil";
+import './styling/viewItems.css';
+import '../index.css'
+import { Link } from "react-router-dom";
 
 
 const ViewItems = () => {
-	const [products, setProducts] = useState([]);
-    console.log('viewItems', products.length)
-	useEffect(() => {
-	  async function fetchProducts() {
-		try {
-		  const response = await fetch(url + '?action=get-products&shopid=' + shopId);
-		  const data = await response.json();
-		  setProducts(data);
-		} catch (error) {
-		  console.error('Error fetching products:', error);
-		}
-	  }
-  
-	  fetchProducts();
-	}, []);
+  const searchTerm = useRecoilValue(searchState);
+  const products = useRecoilValue(productState);
 
-	return (
-		<div>
-			<h1>Produkter</h1>
-		<div className="product-container">
-			<ul>
-				{products.map((product) => (
-					<li key={product.id} className="product-card">
-						<img src={product.picture} alt={product.name} className="product-img"/>
-						<h3>{product.name}</h3>
-						<p className="description">{product.description}</p>
-						<p className="price">{product.price} kr</p>
-					</li>
-				))}
-			</ul>
-		</div>
-		</div>
-	);
+  // Filtrera produkter baserat på söktermen
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+
+  return (
+    <div className="product-container">
+      <h2 className="cat-h2">Alla Produkter</h2>
+      <ul className="product-ul">
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <li key={product.id} className="product-card">
+              <Link to={`/products/${product.id}`} className="product-link">
+              <img src={product.picture} alt={product.name} className="product-img" />
+              <h3>{product.name}</h3>
+              <p className="description">{product.description}</p>
+              <p className="price">{product.price} kr</p>
+              </Link>
+            </li>
+          ))
+        ) : (
+          <li className="no-results">Inga produkter hittades :(</li>
+        )}
+      </ul>
+    </div>
+  );
 }
 
-export default ViewItems
-
+export default ViewItems;

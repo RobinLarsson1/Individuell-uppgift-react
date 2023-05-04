@@ -7,10 +7,15 @@ import { BiShoppingBag } from 'react-icons/bi';
 import { useState } from "react";
 import { BurgerMenuData } from "../data/burgerMenuData";
 import logo from '../img/logo.png';
+import { useEffect } from "react";
+import { useRecoilState } from "recoil"
+import { isMobileState } from "../data/productsAtom"
+import SearchBar from "./SearchBar";
+
 
 const Header = () => {
   const [showOverlay, setShowOverlay] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useRecoilState(isMobileState)
 
   const toggleOverlay = () => {
     setShowOverlay(!showOverlay);
@@ -18,14 +23,13 @@ const Header = () => {
   };
 
   const handleResize = () => {
-    setIsMobile(window.innerWidth <= 768); // Anpassa storleken beroende på behov (exempelvis 768px)
+    setIsMobile(window.innerWidth <= 768);
   };
 
-  // Lyssna på storleksändringar för att uppdatera isMobile vid behov
   window.addEventListener("resize", handleResize);
 
-  // Kör handleResize när komponenten monteras för att initialt sätta rätt värde på isMobile
-  React.useEffect(() => {
+
+  useEffect(() => {
     handleResize();
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -37,14 +41,14 @@ const Header = () => {
       <div>
         <header>
           <div className="top-header">
-            <img src={logo} alt="Logo" className="logo" />
+            <Link to="/"><img src={logo} alt="Logo" className="logo-mobile" /></Link>
             <div className="icon-div">
-              <BiShoppingBag className="menu-icon" />
-              <AiOutlineUser className="menu-icon" />
-              <RiMenu3Line className="menu-icon" onClick={toggleOverlay} />
+              <BiShoppingBag className="menu-icon-mobile" />
+              <Link to="/login"><AiOutlineUser className="menu-icon-mobile" /></Link>
+              <RiMenu3Line className="menu-icon-mobile" onClick={toggleOverlay} />
             </div>
           </div>
-          <input type="text" placeholder="Sök produkt eller varumärke" className="search-input" />
+          <SearchBar />
         </header>
         {showOverlay && (
           <div className={showOverlay ? 'overlay active' : 'overlay'}>
@@ -67,13 +71,13 @@ const Header = () => {
     return (
       <header>
         <div className="desktop-header">
-          <img src={logo} alt="Logo" className="logo" />
+          <Link to="/"><img src={logo} alt="Logo" className="logo-desktop" /></Link>
           <div className="icon-div">
-            <BiShoppingBag className="menu-icon" />
-            <AiOutlineUser className="menu-icon" />
+            <BiShoppingBag className="menu-icon-desktop" />
+            <Link to="/login"> <AiOutlineUser className="menu-icon-desktop" /> </Link>
           </div>
         </div>
-        <input type="text" placeholder="Sök produkt eller varumärke" className="search-input-desktop" />
+        <SearchBar />
         <div className="under-cat">
           <Link to="/allaprodukter" className="all-products">Alla produkter</Link>
           {BurgerMenuData.map((textItem, index) => {
