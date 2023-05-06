@@ -21,19 +21,44 @@
 	font-size: 1.5em;
 	color: var(--background-white);
 }
+
 .home-text:hover {
 	text-decoration: underline;
 }
+
 .home {
 	display: flex;
 	flex-direction: column;
 }
+
 .icon-container {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 }
+
 .icons {
 	font-size: 2em;
+}
+
+@media screen and (min-width: 1000px) {
+	.home {
+		display: flex;
+		flex-direction: column;
+		height: 100vh;
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.desktop-container {
+		display: flex;
+	}
+
+	.home-img {
+		width: 50vw;
+		height: 50vh;
+		object-fit: cover;
+		overflow: hidden;
+	}
 }

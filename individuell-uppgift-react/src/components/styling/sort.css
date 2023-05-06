@@ -1,0 +1,28 @@
+.sort-options {
+	background-color: white;
+	font-size: 14px;
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 0.5em 0.5em;
+	width: 12em;
+	position: absolute;
+}
+.sort-li {
+	text-align: start;
+	width: 10em;
+	cursor: pointer;
+}
+.sort-li:hover {
+	font-weight: bold;
+}
+.sort-button {
+	margin-bottom: 0.5em;
+	cursor: pointer;
+	min-width: 14em;
+}
+.sort-icon {
+	font-size: 1.5em;
+}

@@ -6,11 +6,13 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import './styling/viewItems.css';
 import '../index.css'
 import { Link } from "react-router-dom";
+import Sort from './Sort';
 
 
 const ViewItems = () => {
   const searchTerm = useRecoilValue(searchState);
   const products = useRecoilValue(productState);
+  const [sortedProducts, setSortedProducts] = useState([])
 
   // Filtrera produkter baserat på söktermen
   const filteredProducts = products.filter((product) =>
@@ -20,16 +22,34 @@ const ViewItems = () => {
 
   return (
     <div className="product-container">
-      <h2 className="cat-h2">Alla Produkter</h2>
+      <div className="header-container">
+        <h2 className="cat-h2">Alla Produkter</h2>
+        <div className="sort-div">
+        <Sort className="sort-btn"/>
+        </div>
+      </div>
       <ul className="product-ul">
-        {filteredProducts.length > 0 ? (
+        {/* Finns det sorterade produkter, visa detta */}
+        {sortedProducts.length > 0 ? (
+          sortedProducts.map((product) => (
+            <li key={product.id} className="product-card">
+              <Link to={`/products/${product.id}`} className="product-link">
+                <img src={product.picture} alt={product.name} className="product-img" />
+                <h3>{product.name}</h3>
+                <p className="description">{product.description}</p>
+                <p className="price">{product.price} kr</p>
+              </Link>
+            </li>
+          ))
+          // finns det inga produkter i sorted och det finns i filtered så visa det
+        ) : filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <li key={product.id} className="product-card">
               <Link to={`/products/${product.id}`} className="product-link">
-              <img src={product.picture} alt={product.name} className="product-img" />
-              <h3>{product.name}</h3>
-              <p className="description">{product.description}</p>
-              <p className="price">{product.price} kr</p>
+                <img src={product.picture} alt={product.name} className="product-img" />
+                <h3>{product.name}</h3>
+                <p className="description">{product.description}</p>
+                <p className="price">{product.price} kr</p>
               </Link>
             </li>
           ))
@@ -39,6 +59,7 @@ const ViewItems = () => {
       </ul>
     </div>
   );
+  
 }
 
 export default ViewItems;

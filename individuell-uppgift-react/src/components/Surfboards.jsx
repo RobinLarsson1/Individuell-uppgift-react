@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { productState } from "../data/productsAtom";
 import './styling/viewItems.css';
+import Sort from './Sort';
+import './styling/sort.css'
 
 const Surfboards = () => {
   const products = useRecoilValue(productState);
@@ -18,7 +20,12 @@ const Surfboards = () => {
 
   return (
     <div className="product-container">
-      <h2 className="cat-h2">Surfboards</h2>
+      <div className="header-container">
+        <h2 className="cat-h2">Surfboards</h2>
+        <div className="sort-div">
+        <Sort className="sort-btn"/>
+        </div>
+      </div>
       <ul className="product-ul">
         {surfboardProducts.map((product) => (
           <li key={product.id} className="product-card">

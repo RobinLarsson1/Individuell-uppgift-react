@@ -8,6 +8,7 @@ import Longboards from './components/Longboards'
 import Skateboards from './components/skateboards'
 import Kiteboards from './components/Kiteboards'
 import ProductDetails from './components/ProductDetails'
+import Cart from './components/ProductDetails'
 
 
 export const router = createHashRouter([
@@ -46,6 +47,10 @@ export const router = createHashRouter([
 			{
 				path: 'products/:productId',
 				element: <ProductDetails />
+			},
+			{
+				path: 'cart',
+				element: <Cart />
 			},
 		]
 	}

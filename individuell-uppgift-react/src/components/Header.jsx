@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { useRecoilState } from "recoil"
 import { isMobileState } from "../data/productsAtom"
 import SearchBar from "./SearchBar";
+import { RiArrowDownSLine } from 'react-icons/ri';
 
 
 const Header = () => {

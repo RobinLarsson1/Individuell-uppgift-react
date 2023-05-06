@@ -161,7 +161,7 @@ header {
 	/* right: -100%; */
 	transition: 850ms;
 	z-index: 99;
-	border-radius: 10px;
+	border-radius:10px 0px 0px 10px;
 }
 
 .overlay.active {
