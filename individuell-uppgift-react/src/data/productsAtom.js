@@ -22,3 +22,7 @@ export const savedProducts = atom({
 	key: "savedProductsState",
 	default: "",
   });
+export const cartState = atom({
+	key: "cartState",
+	default: [],
+  });

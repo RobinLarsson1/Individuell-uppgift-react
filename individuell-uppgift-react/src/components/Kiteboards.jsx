@@ -4,6 +4,7 @@ import { productState } from "../data/productsAtom";
 import './styling/viewItems.css';
 import Sort from './Sort';
 import './styling/sort.css'
+import { Link } from "react-router-dom";
 
 const Kiteboards = () => {
   const products = useRecoilValue(productState);
@@ -28,10 +29,12 @@ const Kiteboards = () => {
       <ul className="product-ul">
         {kiteboardProducts.map((product) => (
           <li key={product.id} className="product-card">
-            <img src={product.picture} alt={product.name} className="product-img" />
-            <h3>{product.name}</h3>
-            <p className="description">{product.description}</p>
-              <p className="price">{product.price} kr</p>
+              <Link to={`/products/${product.id}`} className="product-link">
+                <img src={product.picture} alt={product.name} className="product-img" />
+                <h3>{product.name}</h3>
+                <p className="description">{product.description}</p>
+                <p className="price">{product.price} kr</p>
+              </Link>
           </li>
         ))}
       </ul>

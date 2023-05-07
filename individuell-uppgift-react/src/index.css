@@ -116,7 +116,7 @@ header {
 
 .all-products {
 	color: #FFC604;
-	text-decoration: none;
+	text-decoration: underline;
 	transition: all 0.5s;
 }
 
@@ -160,7 +160,7 @@ header {
 	top: 15;
 	/* right: -100%; */
 	transition: 850ms;
-	z-index: 99;
+	z-index: 1000;
 	border-radius:10px 0px 0px 10px;
 }
 
@@ -177,4 +177,8 @@ header {
 .cat-h2 {
 	font-size: 2em;
 	color: var(--dark-grey);
+}
+
+.login-mobile {
+	color: #292A2F;
 }

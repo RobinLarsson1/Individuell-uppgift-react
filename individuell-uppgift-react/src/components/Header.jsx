@@ -44,7 +44,7 @@ const Header = () => {
           <div className="top-header">
             <Link to="/"><img src={logo} alt="Logo" className="logo-mobile" /></Link>
             <div className="icon-div">
-              <BiShoppingBag className="menu-icon-mobile" />
+            <Link to="/cart"><BiShoppingBag className="menu-icon-mobile" /></Link>
               <Link to="/login"><AiOutlineUser className="menu-icon-mobile" /></Link>
               <RiMenu3Line className="menu-icon-mobile" onClick={toggleOverlay} />
             </div>
@@ -54,7 +54,9 @@ const Header = () => {
         {showOverlay && (
           <div className={showOverlay ? 'overlay active' : 'overlay'}>
             <h2>Navigera</h2>
+            <Link to="/allaprodukter">
             <p className="all-products">Alla produkter</p>
+            </Link>
             {BurgerMenuData.map((textItem, index) => {
               return (
                 <Link to={textItem.path} key={index} className={textItem.cName}>
@@ -62,7 +64,9 @@ const Header = () => {
                 </Link>
               );
             })}
-            <h4 className="sub-title">Logga in</h4>
+            <Link to="/login">
+            <h4 className="login-mobile">Logga in</h4>
+            </Link>
           </div>
         )}
       </div>
@@ -74,7 +78,7 @@ const Header = () => {
         <div className="desktop-header">
           <Link to="/"><img src={logo} alt="Logo" className="logo-desktop" /></Link>
           <div className="icon-div">
-            <BiShoppingBag className="menu-icon-desktop" />
+          <Link to="/cart"><BiShoppingBag className="menu-icon-mobile" /></Link>
             <Link to="/login"> <AiOutlineUser className="menu-icon-desktop" /> </Link>
           </div>
         </div>

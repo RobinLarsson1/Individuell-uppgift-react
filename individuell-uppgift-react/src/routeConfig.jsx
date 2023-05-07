@@ -8,7 +8,7 @@ import Longboards from './components/Longboards'
 import Skateboards from './components/skateboards'
 import Kiteboards from './components/Kiteboards'
 import ProductDetails from './components/ProductDetails'
-import Cart from './components/ProductDetails'
+import Cart from './components/Cart'
 
 
 export const router = createHashRouter([
