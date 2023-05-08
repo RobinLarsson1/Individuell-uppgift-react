@@ -9,6 +9,7 @@ import Skateboards from './components/skateboards'
 import Kiteboards from './components/Kiteboards'
 import ProductDetails from './components/ProductDetails'
 import Cart from './components/Cart'
+import AddProduct from './components/addProdukt'
 
 
 export const router = createHashRouter([
@@ -51,6 +52,10 @@ export const router = createHashRouter([
 			{
 				path: 'cart',
 				element: <Cart />
+			},
+			{
+				path: 'addproduct',
+				element: <AddProduct />
 			},
 		]
 	}

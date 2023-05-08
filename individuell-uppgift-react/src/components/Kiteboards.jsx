@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { productState } from "../data/productsAtom";
 import './styling/viewItems.css';
 import Sort from './Sort';
@@ -7,14 +7,13 @@ import './styling/sort.css'
 import { Link } from "react-router-dom";
 
 const Kiteboards = () => {
-  const products = useRecoilValue(productState);
+  const [products, setProducts] = useRecoilState(productState);
   const [kiteboardProducts, setKiteboardProducts] = useState([]);
 
   useEffect(() => {
     const filteredLongboardProducts = products.filter((product) =>
       product.name.toLowerCase().includes("kiteboards")
     );
-    console.log('productssurf', products)
     setKiteboardProducts(filteredLongboardProducts);
   }, [products]);
 

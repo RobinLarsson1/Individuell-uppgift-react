@@ -1,0 +1,43 @@
+:root {
+	--background-grey: #E9EAEC;
+	--background-white: #fafafa;
+	--dark-grey: #292A2F;
+	--lighter-grey: #3A3E47;
+	--standard-font: 'Poppins', sans-serif;
+}
+
+.add-container {
+	display: flex;
+	flex-direction: column;
+	width: 30em;
+	background-color: var(--background-white);
+	padding: 2em;
+	margin: 2em 1em;
+}
+
+.add-price {
+	width: 8em;
+}
+.add-container > label {
+	margin: 0.5em 0 0 0.5em;
+}
+
+.add-container > input {
+	padding: 0.25em;
+	margin: 0 0 0.5em 0.5em;
+}
+.add-textarea {
+	height: 6em;
+	margin-left: 0.5em;
+}
+.product-add {
+	width: 10em;
+	margin-top: 1.5em;
+}
+.add-btn-div {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+

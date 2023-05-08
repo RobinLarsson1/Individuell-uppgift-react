@@ -1,18 +1,24 @@
 import React, { useEffect } from "react";
-import { productState, searchState } from "../data/productsAtom";
+import { productState, searchState, isLoggedInState } from "../data/productsAtom";
 import productData from "../data/productData";
 import { useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import './styling/viewItems.css';
 import '../index.css'
 import { Link } from "react-router-dom";
 import Sort from './Sort';
+import { MdOutlineModeEditOutline } from 'react-icons/md';
+import { FiTrash2 } from 'react-icons/fi';
 
 
 const ViewItems = () => {
-  const searchTerm = useRecoilValue(searchState);
-  const products = useRecoilValue(productState);
-  const [sortedProducts, setSortedProducts] = useState([])
+  const [searchTerm, setSearchTerm] = useRecoilState(searchState);
+  const [products, setProducts] = useRecoilState(productState);
+  const [sortedProducts, setSortedProducts] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+  const [editProductId, setEditProductId] = useState(null);
+  
+  const [tempValues, setTempValues] = useState({});
 
   // Filtrera produkter baserat på söktermen
   const filteredProducts = products.filter((product) =>
@@ -20,12 +26,49 @@ const ViewItems = () => {
   );
 
 
+  const handleEditClick = (productId) => {
+    setEditProductId(productId);
+    setTempValues({ [productId]: { name: "", description: "", price: "" } });
+  };
+  
+  const handleEditChange = (e, productId, field) => {
+    const value = e.target.value;
+    setTempValues((prev) => ({
+      ...prev,
+      [productId]: { ...prev[productId], [field]: value },
+    }));
+  };
+
+  const handleDeleteClick = (productId) => {
+    const updatedProducts = products.filter((product) => product.id !== productId);
+    setProducts(updatedProducts)
+
+  }
+  
+  const handleSaveEditClick = (product) => {
+    const { name, description, price } = tempValues[product.id];
+    const updatedProducts = filteredProducts.map((p) => {
+      if (p.id === product.id) {
+        return {
+          ...p,
+          name,
+          description,
+          price,
+        };
+      } else {
+        return p;
+      }
+    });
+    setProducts(updatedProducts);
+    setEditProductId(null);
+  };
+
   return (
     <div className="product-container">
       <div className="header-container">
         <h2 className="cat-h2">Alla Produkter</h2>
         <div className="sort-div">
-        <Sort className="sort-btn"/>
+          <Sort className="sort-btn" />
         </div>
       </div>
       <ul className="product-ul">
@@ -38,6 +81,11 @@ const ViewItems = () => {
                 <h3>{product.name}</h3>
                 <p className="description">{product.description}</p>
                 <p className="price">{product.price} kr</p>
+                {isLoggedIn && (
+                  <MdOutlineModeEditOutline className="edit-icon" onClick={() =>
+                    handleEditClick(product.id)
+                  } />
+                )}
               </Link>
             </li>
           ))
@@ -45,12 +93,44 @@ const ViewItems = () => {
         ) : filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <li key={product.id} className="product-card">
-              <Link to={`/products/${product.id}`} className="product-link">
-                <img src={product.picture} alt={product.name} className="product-img" />
-                <h3>{product.name}</h3>
-                <p className="description">{product.description}</p>
-                <p className="price">{product.price} kr</p>
-              </Link>
+              {product.id === editProductId ? (
+                <>
+                  <input
+                  placeholder={product.name}
+                    value={tempValues[product.id]?.name ?? product.name}
+                    onChange={(e) => handleEditChange(e, product.id, "name")}
+                  />
+                  <input
+                  placeholder={product.description}
+                    value={tempValues[product.id]?.description ?? product.description}
+                    onChange={(e) => handleEditChange(e, product.id, "description")}
+                  />
+                  <input
+                  placeholder={product.price}
+                    value={tempValues[product.id]?.price ?? product.price}
+                    onChange={(e) => handleEditChange(e, product.id, "price")}
+                  />
+                  <button onClick={() => handleSaveEditClick(product)}>Spara</button>
+                </>
+              ) : (
+                <>
+                  <Link to={`/products/${product.id}`} className="product-link">
+                    <img src={product.picture} alt={product.name} className="product-img" />
+                  </Link>
+                  <h3>{product.name}</h3>
+                  <p className="description">{product.description}</p>
+                  <p className="price">{product.price} kr</p>
+                  {isLoggedIn && (
+                    <div className="admin-icon-div">
+                      <MdOutlineModeEditOutline
+                        className="edit-icon"
+                        onClick={() => handleEditClick(product.id)}
+                      />
+                      <FiTrash2 className="edit-icon" onClick={() => handleDeleteClick(product.id)} />
+                    </div>
+                  )}
+                </>
+              )}
             </li>
           ))
         ) : (
@@ -59,7 +139,7 @@ const ViewItems = () => {
       </ul>
     </div>
   );
-  
+
 }
 
 export default ViewItems;

@@ -1,23 +1,33 @@
-.login-main {
-	display: flex;
-	justify-content: center;
-}
+
 .login-container {
 	height: 50vh;
-	
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	margin: 1em;
-	border: 1px solid black;
+	width: 30em;
+	padding: 2em;
+	margin: 2em 1em;
+	background-color: #fafafa;
 }
 .input-fields {
-	min-width: 30vw;
-	height: 3em;
-	padding: 1em;
+	padding: 0.25em;
+	margin: 0 0 0.5em 0.5em;
 }
 .input-container {
 	display: flex;
 	flex-direction: column;
 	margin: 1em;
+	
+}
+.login-label {
+	margin: 0.5em 0 0 0.5em;
+}
+.login-btn {
+	width: 10em;
+	margin-top: 1.5em;
+}
+.login-btn-div {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

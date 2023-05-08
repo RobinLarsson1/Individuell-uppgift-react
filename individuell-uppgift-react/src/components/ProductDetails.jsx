@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { productState } from "../data/productsAtom";
 import './styling/productDetails.css'
 import { HiTruck } from 'react-icons/hi';
@@ -11,12 +11,11 @@ import { cartState } from "../data/productsAtom.js";
 
 const ProductDetails = ({ }) => {
 	const { productId } = useParams();
-	const products = useRecoilValue(productState);
+	const [products, setProducts] = useRecoilState(productState);
 	const setCart = useSetRecoilState(cartState);
 
 	const product = products.find((product) => product.id.toString() === productId.toString());
 
-	console.log('product:', productId);
 
 	if (!product) {
 		return <div>Loading...</div>; // Hantera fall då produkten inte finns eller laddas
@@ -30,10 +29,12 @@ const ProductDetails = ({ }) => {
 					<h2>{product.name}</h2>
 					<p className="description">{product.description}</p>
 					<p className="price">{product.price} kr</p>
-				</div>
-				<button onClick={() => setCart((oldCart) => [...oldCart, product])}>
+					<div className="add-to-cart-div">
+				<button onClick={() => setCart((oldCart) => [...oldCart, product])} className="add-to-cart">
 					Lägg i Varukorgen
 				</button>
+				</div>
+				</div>
 			</div>
 			<section >
 				<div className="del-box">

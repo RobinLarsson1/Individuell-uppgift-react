@@ -1,10 +1,19 @@
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useState, useRef } from 'react'
 import './styling/login.css'
+import { isLoggedInState } from '../data/productsAtom'
+import { useRecoilState } from 'recoil'
+
 
 const Login = () => {
 	const [isSubmitted, setIsSubmitted] = useState(false)
 	const [errorMessages, setErrorMessages] = useState({})
-	const [isLoggedIn, setIsLoggedIn] = useState(false)
+	const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+	const navigate = useNavigate();
+
+
+	const unameRef = useRef(null);
+	const passRef = useRef(null);
 
 	const loginInfo = [
 		{
@@ -19,39 +28,51 @@ const Login = () => {
 
 	const handleUserSubmit = (event) => {
 		event.preventDefault();
+		const uname = unameRef.current.value;
+		const pass = passRef.current.value;
 
-        const { uname, pass } = document.forms[0];
+		const userLoginData = loginInfo.find((user) => user.username === uname);
 
-		const userLoginData = loginInfo.find((user.username === uname.value))
+		if (userLoginData) {
+			if (userLoginData.password !== pass) {
+				// Fel Lösen
+				setErrorMessages({ name: "pass", message: error.err });
+			} else {
+				setIsLoggedIn(true);
+				setIsSubmitted(true);
+				navigate("/");
+			}
+		} else if (uname !== "" && pass !== "") {
+			// Både användarnamn och lösenord är felaktiga
+			setErrorMessages({ name: "uname", message: error.err });
+		}
+	};
 
-		if (userData) {
-            if (userData.password !== pass.value) {
-                // Fel Lösen
-                setErrorMessages({ name: "pass", message: errors.pass });
-            } else {
-                setIsSubmitted(true);
-            }
-        } else {
-            // User finns ej
-            setErrorMessages({ name: "uname", message: errors.uname });
-        }
-	}
+	const errorMessage =
+		errorMessages &&
+		((errorMessages.name === "pass" || errorMessages.name === "uname") &&
+			errorMessages.message);
 
 	return (
-		<section className='login-main'>
-			<div className="login-container">
-				<h1>Logga in</h1>
-				<div className='input-container'>
-					<label htmlFor="email">Email</label>
-					<input type="text" name="uname" className='input-fields' />
+		<form>
+			<section className='login-main'>
+				<div className="login-container">
+					<h1>Logga in</h1>
+					<div className='input-container'>
+						<label htmlFor="uname" className='login-label'>Email</label>
+						<input type="text" name="uname" className='input-fields' ref={unameRef} />
+					</div>
+					<div className="input-container">
+						<label htmlFor="password" className='login-label'>Password</label>
+						<input type="password" name="pass" className='input-fields' ref={passRef} />
+						{errorMessage && <p className="error-message">{errorMessage}</p>}
+					</div>
+					<div className="login-btn-div">
+						<button type='submit' className='login-btn' onClick={handleUserSubmit}>Logga in</button>
+					</div>
 				</div>
-				<div className="input-container">
-					<label htmlFor="password">Password</label>
-					<input type="password" name="pass" className='input-fields' />
-				</div>
-				<button type='submit' className='login-btn'>Logga in</button>
-			</div>
-		</section>
+			</section>
+		</form>
 	)
 }
 

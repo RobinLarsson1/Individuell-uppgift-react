@@ -7,7 +7,7 @@ import { router } from './routeConfig.jsx'
 import { RecoilRoot } from 'recoil'
 import { fetchProducts } from './data/fetchProducts.js'
 
-fetchProducts().then(() => {
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RecoilRoot>
@@ -15,4 +15,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </RecoilRoot>
   </React.StrictMode>,
 )
-})
+

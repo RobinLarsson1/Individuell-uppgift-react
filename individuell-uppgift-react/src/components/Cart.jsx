@@ -8,9 +8,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 
+
 const Cart = () => {
 	const [cart, setCart] = useRecoilState(cartState);
 	const [totalPrice, setTotalPrice] = useState(0);
+	const isCartEmpty = useRecoilValue(cartState).length === 0;
+	
 
 	const removeFromCart = (productId) => {
 		setCart((oldCart) => oldCart.filter(item => item.id !== productId))

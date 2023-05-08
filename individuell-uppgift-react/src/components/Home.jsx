@@ -11,21 +11,6 @@ import { url, shopId } from "../data/constants"
 
 
 const Home = () => {
-	const [products, setProducts] = useRecoilState(productState);
-
-	useEffect(() => {
-		async function fetchProducts() {
-		  try {
-			const response = await fetch(url + '?action=get-products&shopid=' + shopId);
-			const data = await response.json();
-			setProducts([...data]); // Skapa en kopia av produkterna
-			
-		  } catch (error) {
-			console.error('Error fetching products:', error);
-		  }
-		}
-		fetchProducts();
-	  }, [onload]);
 
 	return (
 		<div className="home">
