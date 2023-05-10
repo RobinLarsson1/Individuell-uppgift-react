@@ -1,3 +1,5 @@
+@import './root.css';
+
 .add-user-container {
 	width: 100%;
 	display: flex;
@@ -11,7 +13,7 @@
 	flex-direction: column;
 	width: 30em;
 	height: 25em;
-	background-color: white;
+	background-color: var(--background-white);
 	padding: 1.5em;
 }
 .add-uname, .add-pass {
@@ -26,4 +28,11 @@
 	display: flex;
 	justify-content: center;
 	margin-top: 2em;
+}
+.loading-users {
+	width: 100%;
+	margin-top: 10em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

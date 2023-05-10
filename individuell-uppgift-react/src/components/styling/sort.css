@@ -1,5 +1,7 @@
+@import './root.css';
+
 .sort-options {
-	background-color: white;
+	background-color: var(--background-white);
 	font-size: 14px;
 	list-style-type: none;
 	display: flex;

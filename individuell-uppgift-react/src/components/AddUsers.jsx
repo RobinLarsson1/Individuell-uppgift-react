@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { url, shopId } from "../data/constants";
+import './styling/addUser.css'
 
 const AddUsers = () => {
   const [username, setUsername] = useState("");

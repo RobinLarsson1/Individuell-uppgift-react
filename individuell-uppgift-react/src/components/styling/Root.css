@@ -1,13 +1,8 @@
-.page-container {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-  }
-  
-  .main-content {
-	flex-grow: 1;
-  }
-  
-  .footer-container {
-	margin-top: auto;
-  }
+:root {
+	--background-grey: #E9EAEC;
+	--background-white: #fafafa;
+	--yellow: #FFC604;
+	--dark-grey: #292A2F;
+	--lighter-grey: #3A3E47;
+	--standard-font: 'Poppins', sans-serif;
+}

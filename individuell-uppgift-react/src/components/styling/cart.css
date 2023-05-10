@@ -1,3 +1,5 @@
+@import './root.css';
+
 .cart-img {
 	width: 6em;
 	height: 6em;
@@ -6,7 +8,7 @@
 .cart-list {
 	list-style-type: none;
 	display: flex;
-	background-color: #FFFFFF;
+	background-color: var(--background-white);
 	flex-direction: column;
 	height: auto;
 }
@@ -16,7 +18,7 @@
 	flex-direction: row;
 	min-width: 30em;
 	margin: 0.5em;
-	border: 1px solid #E9EAEC;
+	border: 1px solid var(--background-grey);
 	height: 100%;
 	align-items: center;
 }

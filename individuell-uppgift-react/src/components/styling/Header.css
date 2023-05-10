@@ -1,10 +1,4 @@
-:root {
-	--background-grey: #E9EAEC;
-	--background-white: #fafafa;
-	--dark-grey: #292A2F;
-	--lighter-grey: #3A3E47;
-	--standard-font: 'Poppins', sans-serif;
-}
+@import './root.css';
 
 /* Start header*/
 header {
@@ -38,19 +32,19 @@ header {
 	font-size: 2em;
 }
 .filled-cart-icon {
-	color: #FFC604;
+	color: var(--yellow);
 	font-size: 2em;
 }
 .empty-cart-icon-mobile {
 	color: var(--background-white);
 }
 .filled-cart-icon-mobile {
-	color: #FFC604;
+	color: var(--yellow);
 }
 .menu-icon-desktop {
 	cursor: pointer;
 	font-size: 2em;
-	color: #fafafa;
+	color: var(--background-white);
 }
 .menu-icon-mobile {
 	color: var(--background-white);
@@ -110,7 +104,7 @@ header {
 }
 
 .all-products {
-	color: #FFC604;
+	color: var(--yellow);
 	text-decoration: underline;
 	transition: all 0.5s;
 	text-decoration: none;
@@ -143,7 +137,7 @@ header {
 }
 
 .overlay {
-	background-color: white;
+	background-color: var(--background-white);
 	width: 15em;
 	height: 80vh;
 	display: flex;
@@ -173,7 +167,7 @@ header {
 }
 
 .login-mobile {
-	color: #292A2F;
+	color: var(--dark-grey);
 }
 
 .log-out {

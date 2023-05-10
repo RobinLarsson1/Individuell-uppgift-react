@@ -47,7 +47,9 @@ const UserList = () => {
 	}
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <div className='loader'>
+		<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+		</div>
 	}
 
 	return (
@@ -62,8 +64,8 @@ const UserList = () => {
 							{user.id === 30 ?
 								<p className='admin-user'></p>
 								:
-								<div>
-									<button onClick={() => handleDeleteUser(user)}>Delete</button>
+								<div className='user-btn'>
+									<button className='user-add-btn' onClick={() => handleDeleteUser(user)}>Delete</button>
 								</div>
 							}
 						</div>

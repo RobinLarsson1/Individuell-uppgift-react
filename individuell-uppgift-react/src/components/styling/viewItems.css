@@ -1,3 +1,4 @@
+@import './root.css';
 
 .product-container {
 	display: grid;
@@ -41,8 +42,9 @@ ul {
 }
 
 .description {
-	color: #6f747d;
+	color: var(--dark-grey);
 	font-size: 0.9em;
+	padding: 0 0.25em;
 }
 
 .price {

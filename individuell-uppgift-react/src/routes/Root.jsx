@@ -7,7 +7,7 @@ import { useRecoilState } from "recoil";
 import { productState } from "../data/productsAtom";
 import { useEffect } from "react";
 import { url, shopId } from "../data/constants"
-import '../components/styling/Root.css'
+import '../components/styling/main.css'
 
 
 const Root = () => {
