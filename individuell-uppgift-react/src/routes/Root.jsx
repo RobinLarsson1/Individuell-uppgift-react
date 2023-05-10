@@ -7,6 +7,7 @@ import { useRecoilState } from "recoil";
 import { productState } from "../data/productsAtom";
 import { useEffect } from "react";
 import { url, shopId } from "../data/constants"
+import '../components/styling/Root.css'
 
 
 const Root = () => {
@@ -26,14 +27,16 @@ const Root = () => {
 		fetchProducts();
 	  }, [onload]);
 
-	return (
-		<>
-		<Header />
-		<main>
-			<Outlet />
-		</main>
-		<Footer />
-		</>
+	  return (
+		<div className="page-container">
+			<Header />
+			<main className="main-content">
+				<Outlet />
+			</main>
+				<div className="footer-container">
+					<Footer />
+				</div>
+		</div>
 	)
 }
 

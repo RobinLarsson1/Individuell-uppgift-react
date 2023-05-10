@@ -34,15 +34,26 @@ header {
 }
 
 .empty-cart-icon {
-	color: #E9EAEC;
+	color: var(--background-white);
+	font-size: 2em;
 }
 .filled-cart-icon {
+	color: #FFC604;
+	font-size: 2em;
+}
+.empty-cart-icon-mobile {
+	color: var(--background-white);
+}
+.filled-cart-icon-mobile {
 	color: #FFC604;
 }
 .menu-icon-desktop {
 	cursor: pointer;
 	font-size: 2em;
 	color: #fafafa;
+}
+.menu-icon-mobile {
+	color: var(--background-white);
 }
 .search-input {
 	display: flex;
@@ -164,9 +175,7 @@ header {
 .login-mobile {
 	color: #292A2F;
 }
-.empty-cart-icon {
-	font-size: 2em;
-}
+
 .log-out {
 	font-size: 1em;
 	cursor: pointer;
@@ -184,5 +193,17 @@ header {
 	.logged-in-logo {
 		width: 10em;
 		padding: 1em;
+	}
+	.header-container {
+		display: flex;
+		margin: 2em 0 3em 0;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.cat-h2 {
+		font-size: 28px;
+		margin-bottom: 0.5em;
+
 	}
 }

@@ -3,48 +3,48 @@ import { useState, useRef } from 'react'
 import './styling/login.css'
 import { isLoggedInState } from '../data/productsAtom'
 import { useRecoilState } from 'recoil'
+import { userState } from '../data/productsAtom';
+import { url, shopId } from "../data/constants"
 
 
 const Login = () => {
 	const [isSubmitted, setIsSubmitted] = useState(false)
 	const [errorMessages, setErrorMessages] = useState({})
 	const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+	const [user, setUser] = useRecoilState(userState);
+
 	const navigate = useNavigate();
 
 
 	const unameRef = useRef(null);
 	const passRef = useRef(null);
 
-	const loginInfo = [
-		{
-			username: "admin",
-			password: "password"
-		}
-	]
-
-	const error = {
-		err: "Invalid username or password"
-	}
-
-	const handleUserSubmit = (event) => {
+	const handleUserSubmit = async (event) => {
 		event.preventDefault();
 		const uname = unameRef.current.value;
 		const pass = passRef.current.value;
 
-		const userLoginData = loginInfo.find((user) => user.username === uname);
+		const data = {
+			action: "login-user",
+			shopid: shopId,
+			username: uname,
+			password: pass,
+		};
+		const options = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
+		};
+		const response = await fetch(url, options);
+		const statusObject = await response.json();
 
-		if (userLoginData) {
-			if (userLoginData.password !== pass) {
-				// Fel Lösen
-				setErrorMessages({ name: "pass", message: error.err });
-			} else {
-				setIsLoggedIn(true);
-				setIsSubmitted(true);
-				navigate("/");
-			}
-		} else if (uname !== "" && pass !== "") {
-			// Både användarnamn och lösenord är felaktiga
-			setErrorMessages({ name: "uname", message: error.err });
+		if (statusObject.status === "success") {
+			setUser({username: uname, password: pass});
+			setIsLoggedIn(true);
+			setIsSubmitted(true);
+			navigate("/admin");
+		} else {
+			setErrorMessages({ name: "uname", message: "Invalid username or password" });
 		}
 	};
 
@@ -54,7 +54,7 @@ const Login = () => {
 			errorMessages.message);
 
 	return (
-		<form>
+		<form className='login-form'>
 			<section className='login-main'>
 				<div className="login-container">
 					<h1>Logga in</h1>

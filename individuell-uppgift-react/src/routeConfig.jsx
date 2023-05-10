@@ -10,6 +10,10 @@ import Kiteboards from './components/Kiteboards'
 import ProductDetails from './components/ProductDetails'
 import Cart from './components/Cart'
 import AddProduct from './components/addProdukt'
+import AddUsers from './components/AddUsers'
+import Admin from './components/Admin'
+import AdminProducts from './components/AdminProducts'
+import UserList from './components/UserList'
 
 
 export const router = createHashRouter([
@@ -22,7 +26,7 @@ export const router = createHashRouter([
 				element: <Home />
 			},
 			{
-				path: 'allaprodukter',
+				path: 'products',
 				element: <ViewItems />
 			},
 			{
@@ -56,6 +60,26 @@ export const router = createHashRouter([
 			{
 				path: 'addproduct',
 				element: <AddProduct />
+			},
+			{
+				path: 'admin/users',
+				element: <UserList />
+			},
+			{
+				path: 'admin',
+				element: <Admin />
+			},
+			{
+				path: 'admin/products',
+				element: <AdminProducts />
+			},
+			{
+				path: 'admin/addusers',
+				element: <AddUsers />
+			},
+			{
+				path: '*',
+				element: <Home />
 			},
 		]
 	}

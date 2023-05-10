@@ -7,23 +7,46 @@ import { useRecoilState } from "recoil";
 import { useState } from "react";
 import { useEffect } from "react";
 
-
-
 const Cart = () => {
 	const [cart, setCart] = useRecoilState(cartState);
 	const [totalPrice, setTotalPrice] = useState(0);
-	const isCartEmpty = useRecoilValue(cartState).length === 0;
-	
+
 
 	const removeFromCart = (productId) => {
 		setCart((oldCart) => oldCart.filter(item => item.id !== productId))
+	}
+
+	const decreaseQuantity = (productId) => {
+		setCart((oldCart) =>
+			oldCart.map((item) => {
+				if (item.id === productId) {
+					const newQuantity = isNaN(item.quantity) ? 0 : item.quantity - 1;
+					if (newQuantity < 1) {
+						return item; // Om nya mängden är mindre än 1, returnera originalobjektet
+					} else {
+						return { ...item, quantity: newQuantity }; // Annars returnera en kopia med den nya mängden
+					}
+				}
+				return item;
+			})
+		);
+	};
+
+	const increaseQuantity = (productId) => {
+		setCart((oldCart) => oldCart.map(item => {
+			if (item.id === productId) {
+				const newQuantity = isNaN(item.quantity) ? 1 : item.quantity + 1;
+				return { ...item, quantity: newQuantity };
+			}
+			return item;
+		}))
 	}
 
 
 	useEffect(() => {
 		let total = 0;
 		cart.forEach((item) => {
-			total += item.price
+			total += item.price * item.quantity
 		});
 		setTotalPrice(total)
 	}, [cart]);
@@ -36,7 +59,6 @@ const Cart = () => {
 		)
 	}
 
-
 	return (
 		<section className="cart-container">
 			<div className="cart-items">
@@ -47,24 +69,26 @@ const Cart = () => {
 							<img src={item.picture} alt="cart-img" className="cart-img" />
 							<div className="cart-text">
 								<p>{item.name}</p>
-								<p>{item.price} kr</p>
+								<p className="cart-price">{item.price} kr</p>
 								<div className="cart-btns">
-									<button onClick={() => removeFromCart(item.id)}><FiTrash2 /></button>
-									<div className="addOrRemove">
-										<button onClick={() => decreseQuantity}>-</button>
-										<span>1</span>
-										<button onClick={() => increaseQuantity}>+</button>
+									<div className="quantity">
+										<button className="quant-btn" onClick={() => decreaseQuantity(item.id)}>-</button>
+										<p className="quantity-p">{item.quantity}</p>
+										<button className="quant-btn" onClick={() => increaseQuantity(item.id)}>+</button>
 									</div>
+										<FiTrash2 className="delete-icon" onClick={() => removeFromCart(item.id)} />
 								</div>
 							</div>
 						</li>
 					))}
 				</ul>
-				<h3>Totalpris: {totalPrice > 10000 ? totalPrice.toLocaleString("sv-SE") : totalPrice} kr
+				<h3 className="cart-total">Total: {totalPrice > 10000 ? totalPrice.toLocaleString("sv-SE") : totalPrice} kr
 				</h3>
 			</div>
 		</section>
 	)
 }
+
+
 
 export default Cart

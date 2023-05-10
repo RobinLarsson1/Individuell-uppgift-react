@@ -21,7 +21,7 @@ const SearchBar = ({ onSearch }) => {
 	};
 	
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit} className='search-form'>
 			<input className="search-input-desktop"
 				type="text"
 				placeholder="Sök produkt..."

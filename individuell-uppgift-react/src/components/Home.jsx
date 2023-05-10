@@ -1,14 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './styling/Home.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBox, faGlobe } from '@fortawesome/free-solid-svg-icons';
-import { useRecoilState } from "recoil";
-import { productState } from "../data/productsAtom";
-import { useEffect } from "react";
-import { url, shopId } from "../data/constants"
-
-
 
 const Home = () => {
 

@@ -27,11 +27,11 @@ const handleProductSubmit = (event) => {
 	  setNewPrice("")
 	  setnewDescription("")
 
-	  console.log(products);
+	 
 }
 	
 	return(
-		<form onSubmit={handleProductSubmit}>
+		<form onSubmit={handleProductSubmit} className="add-prod-form">
 			<section className="add-sect">
 			<div className="add-container">
 				<h1>Lägg till produkt</h1>

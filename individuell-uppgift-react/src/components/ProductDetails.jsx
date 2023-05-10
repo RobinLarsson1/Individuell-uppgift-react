@@ -6,13 +6,14 @@ import './styling/productDetails.css'
 import { HiTruck } from 'react-icons/hi';
 import { useSetRecoilState } from "recoil";
 import { cartState } from "../data/productsAtom.js";
-
+import { useState } from "react";
 
 
 const ProductDetails = ({ }) => {
 	const { productId } = useParams();
 	const [products, setProducts] = useRecoilState(productState);
 	const setCart = useSetRecoilState(cartState);
+	const [quantity, setQuantity] = useState(1);
 
 	const product = products.find((product) => product.id.toString() === productId.toString());
 
@@ -30,10 +31,10 @@ const ProductDetails = ({ }) => {
 					<p className="description">{product.description}</p>
 					<p className="price">{product.price} kr</p>
 					<div className="add-to-cart-div">
-				<button onClick={() => setCart((oldCart) => [...oldCart, product])} className="add-to-cart">
-					Lägg i Varukorgen
-				</button>
-				</div>
+						<button onClick={() => setCart((oldCart) => [...oldCart, { ...product, quantity }])} className="add-to-cart">
+							Lägg i Varukorgen
+						</button>
+					</div>
 				</div>
 			</div>
 			<section >

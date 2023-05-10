@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom, atomFamily } from "recoil";
 
 export const productState = atom({
 	key: "productState",
@@ -29,4 +29,19 @@ export const cartState = atom({
 	key: "cartState",
 	default: [],
 });
+
+export const userState = atom({
+	key: 'userState',
+	default: {
+	  id: null,
+	  username: null,
+	  email: null,
+	  isLoggedIn: false
+	}
+  });
+  export const userListState = atom({
+	key: 'userListState',
+	default: []
+  });
+  
 

@@ -17,6 +17,8 @@ const Longboards = () => {
     setLongboardProducts(filteredLongboardProducts);
   }, [products]);
 
+  
+
   return (
     <div className="product-container">
       <div className="header-container">

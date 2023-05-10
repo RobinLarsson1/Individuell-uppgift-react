@@ -1,0 +1,29 @@
+:root {
+	--background-grey: #E9EAEC;
+	--background-white: #fafafa;
+	--dark-grey: #292A2F;
+	--lighter-grey: #3A3E47;
+	--standard-font: 'Poppins', sans-serif;
+}
+
+.userlist-container {
+	display: flex;
+	flex-direction: column;
+}
+.userlist-card {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	list-style-type: none;
+	width: 30em;
+	background-color: var(--background-white);
+	padding: 2em;
+	border: 1px solid black;
+	margin: 1em;
+}
+.admin-user {
+	color: rgb(209, 5, 5);
+}
+.user-span {
+	font-weight: bold;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { productState, searchState, isLoggedInState } from "../data/productsAtom";
 import productData from "../data/productData";
 import { useState } from "react";

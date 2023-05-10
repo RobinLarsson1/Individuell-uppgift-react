@@ -1,0 +1,29 @@
+.add-user-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 2em 0 2em;
+	
+}
+.add-user-form {
+	display: flex;
+	flex-direction: column;
+	width: 30em;
+	height: 25em;
+	background-color: white;
+	padding: 1.5em;
+}
+.add-uname, .add-pass {
+	display: flex;
+	flex-direction: column;
+	margin: 1em 0 1em 0;
+}
+.add-user-btn {
+	width: 14em;
+}
+.add-user-btn-div {
+	display: flex;
+	justify-content: center;
+	margin-top: 2em;
+}

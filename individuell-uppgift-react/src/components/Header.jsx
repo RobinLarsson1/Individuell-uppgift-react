@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { RiMenu3Line } from 'react-icons/ri';
 import { AiOutlineUser } from 'react-icons/ai';
 import { BiShoppingBag } from 'react-icons/bi';
@@ -11,7 +10,6 @@ import { useEffect } from "react";
 import { useRecoilState } from "recoil"
 import { isMobileState } from "../data/productsAtom"
 import SearchBar from "./SearchBar";
-import { RiArrowDownSLine } from 'react-icons/ri';
 import { useRecoilValue } from "recoil";
 import { cartState } from "../data/productsAtom";
 import { isLoggedInState } from "../data/productsAtom";
@@ -50,6 +48,7 @@ const Header = () => {
     };
   }, []);
 
+
 if (!isLoggedIn) {
 
   if (isMobile) {
@@ -59,18 +58,21 @@ if (!isLoggedIn) {
           <div className="top-header">
             <Link to="/"><img src={logo} alt="Logo" className="logo-mobile" /></Link>
             <div className="icon-div">
-              <Link to="/cart"><BiShoppingBag className={isCartEmpty ? 'empty-cart-icon' : 'filled-cart-icon'} />
+              <Link to="/cart"><BiShoppingBag className={isCartEmpty ? 'empty-cart-icon-mobile' : 'filled-cart-icon-mobile'} />
               </Link>
               <Link to="/login"><AiOutlineUser className="menu-icon-mobile" /></Link>
               <RiMenu3Line className="menu-icon-mobile" onClick={toggleOverlay} />
             </div>
           </div>
           <SearchBar />
+          <div className="under-cat">
+          <Link to="/products" className="all-products">Alla produkter</Link>
+        </div>
         </header>
         {showOverlay && (
           <div className={showOverlay ? 'overlay active' : 'overlay'}>
             <h2>Navigera</h2>
-            <Link to="/allaprodukter">
+            <Link to="/products">
               <p className="all-products">Alla produkter</p>
             </Link>
             {BurgerMenuData.map((textItem, index) => {
@@ -102,7 +104,7 @@ if (!isLoggedIn) {
         </div>
         <SearchBar />
         <div className="under-cat">
-          <Link to="/allaprodukter" className="all-products">Alla produkter</Link>
+          <Link to="/products" className="all-products">Alla produkter</Link>
           {BurgerMenuData.map((textItem, index) => {
             return (
               <Link to={textItem.path} key={index} className="header-link">
@@ -137,8 +139,10 @@ if (!isLoggedIn) {
         </div>
         <SearchBar />
         <div className="under-cat">
-          <Link to="/allaprodukter" className="all-products">Alla produkter</Link>
+          <Link to="/admin/products" className="all-products">Redigera produkter</Link>
           <Link to="/addproduct" className="add-product">Lägg till produkt</Link>
+          <Link to="/admin/users" className="add-product">Användare</Link>
+          <Link to="/admin/addusers" className="add-product">Lägg till användare</Link>
         </div>
       </header>
       )
