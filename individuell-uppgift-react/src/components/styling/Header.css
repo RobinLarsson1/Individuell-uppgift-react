@@ -37,6 +37,7 @@ header {
 }
 .empty-cart-icon-mobile {
 	color: var(--background-white);
+	font-size: 1.5em;
 }
 .filled-cart-icon-mobile {
 	color: var(--yellow);
@@ -48,6 +49,13 @@ header {
 }
 .menu-icon-mobile {
 	color: var(--background-white);
+	font-size: 1.5em;
+}
+.burger-icon {
+	color: var(--background-white);
+	font-size: 1.5em;
+	margin-bottom: 0.2em;
+	cursor: pointer;
 }
 .search-input {
 	display: flex;
@@ -114,6 +122,10 @@ header {
 	text-decoration: none;
 	transition: all 0.5s;
 }
+a {
+	list-style-type: none;
+	text-decoration: none;
+}
 
 .all-products:hover, .add-product:hover {
 	transform: scale(1.1);
@@ -126,6 +138,7 @@ header {
 	justify-content: space-evenly;
 	align-items: center;
 }
+
 
 /* Slut på header */
 
@@ -145,7 +158,6 @@ header {
 	position: fixed;
 	align-items: start;
 	top: 15;
-	/* right: -100%; */
 	transition: 850ms;
 	z-index: 1000;
 	border-radius:10px 0px 0px 10px;

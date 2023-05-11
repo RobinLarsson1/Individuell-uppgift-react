@@ -3,12 +3,16 @@ import { useRecoilState } from 'recoil';
 import { userListState } from '../data/productsAtom';
 import { url, shopId } from '../data/constants';
 import './styling/userList.css'
+import Loader from './Loader';
+import LoaderLogin from './LoaderLogin';
+
 
 
 
 const UserList = () => {
 	const [userList, setUserList] = useRecoilState(userListState);
 	const [isLoading, setIsLoading] = useState(true);
+	const [isDeletingUser, setIsDeletingUser] = useState(false);
 
 	useEffect(() => {
 		const fetchUsers = async () => {
@@ -26,7 +30,7 @@ const UserList = () => {
 	}, []);
 
 	async function handleDeleteUser(user) {
-
+		setIsDeletingUser(true);
 		const data = {
 			shopid: shopId,
 			userid: user.id
@@ -37,19 +41,22 @@ const UserList = () => {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(data)
 		}
-
+try {
 		let response = await fetch((url + '?action=delete-user'), options)
 		console.log(response)
 
 		const newArray = [...userList]
 		const filteredArray = newArray.filter(selectedUser => selectedUser.id !== user.id)
-		setUserList(filteredArray)
+		setUserList(filteredArray);
+	} catch (error) {
+		console.error(error);
+	} finally {
+		setIsDeletingUser(false);
 	}
+}
 
 	if (isLoading) {
-		return <div className='loader'>
-		<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-		</div>
+		return <Loader/>
 	}
 
 	return (
@@ -66,7 +73,11 @@ const UserList = () => {
 								:
 								<div className='user-btn'>
 									<button className='user-add-btn' onClick={() => handleDeleteUser(user)}>Delete</button>
+									<div className='del-user-loader'>
+									{isDeletingUser && <LoaderLogin />} 
+									</div>
 								</div>
+								
 							}
 						</div>
 					</li>

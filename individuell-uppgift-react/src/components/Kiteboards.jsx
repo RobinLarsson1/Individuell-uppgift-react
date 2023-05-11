@@ -5,16 +5,23 @@ import './styling/viewItems.css';
 import Sort from './Sort';
 import './styling/sort.css'
 import { Link } from "react-router-dom";
+import { searchState } from "../data/productsAtom";
 
 const Kiteboards = () => {
   const [products, setProducts] = useRecoilState(productState);
   const [kiteboardProducts, setKiteboardProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useRecoilState(searchState);
+
+  const filteredKiteboardProducts = kiteboardProducts.filter((product) => 
+  product.name.toLowerCase().includes(searchTerm.toLocaleLowerCase()) || 
+  product.description.toLocaleLowerCase().includes(searchTerm.toLowerCase())
+  )
 
   useEffect(() => {
-    const filteredLongboardProducts = products.filter((product) =>
+    const filteredProducts = products.filter((product) =>
       product.name.toLowerCase().includes("kiteboards")
     );
-    setKiteboardProducts(filteredLongboardProducts);
+    setKiteboardProducts(filteredProducts);
   }, [products]);
 
   return (
@@ -26,7 +33,7 @@ const Kiteboards = () => {
         </div>
       </div>
       <ul className="product-ul">
-        {kiteboardProducts.map((product) => (
+        {filteredKiteboardProducts.map((product) => (
           <li key={product.id} className="product-card">
               <Link to={`/products/${product.id}`} className="product-link">
                 <img src={product.picture} alt={product.name} className="product-img" />

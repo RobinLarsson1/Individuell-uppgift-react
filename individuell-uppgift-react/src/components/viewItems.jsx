@@ -17,26 +17,47 @@ const ViewItems = () => {
   const [sortedProducts, setSortedProducts] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
   const [editProductId, setEditProductId] = useState(null);
-  
+
   const [tempValues, setTempValues] = useState({});
+  const [isFormValid, setIsFormValid] = useState(false);
 
   // Filtrera produkter baserat på söktermen
   const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    product.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  
+  const isValid = (product) => {
+    const { name, description, price } = tempValues[product.id] || {};
+    return Boolean(name && description && price);
+  };
+  
+  const isFormIncomplete = filteredProducts.some((product) => !isValid(product));
+
 
 
   const handleEditClick = (productId) => {
     setEditProductId(productId);
     setTempValues({ [productId]: { name: "", description: "", price: "" } });
   };
-  
+
   const handleEditChange = (e, productId, field) => {
     const value = e.target.value;
     setTempValues((prev) => ({
       ...prev,
       [productId]: { ...prev[productId], [field]: value },
     }));
+
+    if (
+      tempValues[productId]?.name &&
+      tempValues[productId]?.description &&
+      tempValues[productId]?.price
+    ) {
+      setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
+    }
   };
 
   const handleDeleteClick = (productId) => {
@@ -44,7 +65,7 @@ const ViewItems = () => {
     setProducts(updatedProducts)
 
   }
-  
+
   const handleSaveEditClick = (product) => {
     const { name, description, price } = tempValues[product.id];
     const updatedProducts = filteredProducts.map((p) => {
@@ -62,7 +83,7 @@ const ViewItems = () => {
     setProducts(updatedProducts);
     setEditProductId(null);
   };
-
+  
   return (
     <div className="product-container">
       <div className="header-container">
@@ -96,21 +117,27 @@ const ViewItems = () => {
               {product.id === editProductId ? (
                 <>
                   <input
-                  placeholder={product.name}
+                    placeholder={product.name}
                     value={tempValues[product.id]?.name ?? product.name}
                     onChange={(e) => handleEditChange(e, product.id, "name")}
                   />
                   <input
-                  placeholder={product.description}
+                    placeholder={product.description}
                     value={tempValues[product.id]?.description ?? product.description}
                     onChange={(e) => handleEditChange(e, product.id, "description")}
                   />
-                  <input
-                  placeholder={product.price}
+                  <input type="number"
+                    placeholder={product.price}
                     value={tempValues[product.id]?.price ?? product.price}
                     onChange={(e) => handleEditChange(e, product.id, "price")}
                   />
-                  <button onClick={() => handleSaveEditClick(product)}>Spara</button>
+                  <button
+                    onClick={() => handleSaveEditClick(product)}
+                    disabled={!isValid(product)}
+                  >
+                    Spara
+                  </button>
+                  {isFormIncomplete && <p>Fyll i alla fält för att spara</p>}
                 </>
               ) : (
                 <>

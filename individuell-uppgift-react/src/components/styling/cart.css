@@ -31,7 +31,10 @@
 }
 
 .empty-cart {
-	height: 30vh;
+	height: 400px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .quant-btn {
@@ -61,6 +64,11 @@
 }
 .delete-icon {
 	margin: 0.5em 0em;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+.delete-icon:hover {
+	transform: scale(1.2);
 }
 .cart-total {
 	display: flex;

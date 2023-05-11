@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import './styling/Header.css'
 
 
+
 const Header = () => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [isMobile, setIsMobile] = useRecoilState(isMobileState)
@@ -24,6 +25,7 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
   const navigate = useNavigate();
 
+  
   const toggleOverlay = () => {
     setShowOverlay(!showOverlay);
   
@@ -61,7 +63,7 @@ if (!isLoggedIn) {
               <Link to="/cart"><BiShoppingBag className={isCartEmpty ? 'empty-cart-icon-mobile' : 'filled-cart-icon-mobile'} />
               </Link>
               <Link to="/login"><AiOutlineUser className="menu-icon-mobile" /></Link>
-              <RiMenu3Line className="menu-icon-mobile" onClick={toggleOverlay} />
+              <RiMenu3Line className="burger-icon" onClick={toggleOverlay} />
             </div>
           </div>
           <SearchBar />
