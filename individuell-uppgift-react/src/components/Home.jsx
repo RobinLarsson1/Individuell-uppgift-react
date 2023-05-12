@@ -19,7 +19,7 @@ const Home = () => {
 			<div className="desktop-container">
 			<div className="home-container">
 				<img src='https://tribu.co/app/uploads/sites/10/2020/06/191808_Jackalope_DanMathieuPhoto_5639.jpg' alt="skateboarding image" className="home-img" />
-				<Link to="/skateboarding" className="home-text">Skateboards</Link>
+				<Link to="/skateboards" className="home-text">Skateboards</Link>
 			</div>
 			<div className="home-container">
 				<img src='https://www.thekiteboarder.com/wp-content/uploads/2009/11/21-LOAD-POP-VINCENT-BERGERON-4055-scaled.jpg' alt="kiteboarding image" className="home-img" />
