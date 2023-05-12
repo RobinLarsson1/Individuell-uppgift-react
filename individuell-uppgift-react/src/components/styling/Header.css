@@ -41,6 +41,7 @@ header {
 }
 .filled-cart-icon-mobile {
 	color: var(--yellow);
+	font-size: 1.5em;
 }
 .menu-icon-desktop {
 	cursor: pointer;
@@ -177,7 +178,15 @@ a {
 	font-size: 2em;
 	color: var(--dark-grey);
 }
-
+.burger-closer {
+	color: var(--dark-grey);
+	z-index: 1100;
+	position:fixed;
+	font-size: 2em;
+	right: 5%;
+	cursor: pointer;
+	
+}
 .login-mobile {
 	color: var(--dark-grey);
 }

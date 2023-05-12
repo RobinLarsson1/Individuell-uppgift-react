@@ -15,6 +15,8 @@ import { cartState } from "../data/productsAtom";
 import { isLoggedInState } from "../data/productsAtom";
 import { useNavigate } from 'react-router-dom';
 import './styling/Header.css'
+import { useRef } from "react";
+import { AiOutlineCloseCircle } from 'react-icons/ai'
 
 
 
@@ -23,12 +25,19 @@ const Header = () => {
   const [isMobile, setIsMobile] = useRecoilState(isMobileState)
   const isCartEmpty = useRecoilValue(cartState).length === 0;
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+  const overlayRef = useRef(null);
   const navigate = useNavigate();
 
   
   const toggleOverlay = () => {
     setShowOverlay(!showOverlay);
   
+  };
+
+  const handleOutsideClick = (event) => {
+    if (overlayRef.current && !overlayRef.current.contains(event.target)) {
+      setShowOverlay(false);
+    }
   };
 
   const handleResize = () => {
@@ -72,14 +81,21 @@ if (!isLoggedIn) {
         </div>
         </header>
         {showOverlay && (
-          <div className={showOverlay ? 'overlay active' : 'overlay'}>
+        <div
+          className={showOverlay ? "overlay active" : "overlay"}
+          ref={overlayRef}
+          onClick={handleOutsideClick}
+        >
+          <div>
             <h2>Navigera</h2>
+          <AiOutlineCloseCircle className="burger-closer" onClick={toggleOverlay}/>
+          </div>
             <Link to="/products">
               <p className="all-products">Alla produkter</p>
             </Link>
             {BurgerMenuData.map((textItem, index) => {
               return (
-                <Link to={textItem.path} key={index} className={textItem.cName}>
+                <Link to={textItem.path} key={index} className={textItem.cName} onClick={toggleOverlay}>
                   <p>{textItem.title}</p>
                 </Link>
               );

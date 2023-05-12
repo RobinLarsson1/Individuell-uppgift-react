@@ -41,17 +41,17 @@ const AddProduct = () => {
 	}
 
 	return (
-		<form onSubmit={handleProductSubmit} className="add-prod-form">
+		<form onSubmit={handleProductSubmit} className="add-prod-form" id="add-product-form">
 			<section className="add-sect">
 				<div className="add-container">
 					<h1>Lägg till produkt</h1>
-					<label htmlFor="newProductImage">Bild på produkt:</label>
+					<label>Bild på produkt:</label>
 					<input type="text" placeholder="Kopiera in url" value={newProductImage} onChange={(e) => setNewProductImage(e.target.value)} onBlur={checkFormValidity} />
-					<label htmlFor="newName">Namn på produkt: </label>
+					<label>Namn på produkt: </label>
 					<input type="text" value={newName} onChange={(e) => setNewName(e.target.value)} onBlur={checkFormValidity} />
-					<label htmlFor="newPrice">Pris på produkt:</label>
+					<label>Pris på produkt:</label>
 					<input type="number" value={newPrice} onChange={(e) => setNewPrice(e.target.value)} className="add-price" onBlur={checkFormValidity} />
-					<label htmlFor="newDescription">Produktbeskrivning:</label>
+					<label>Produktbeskrivning:</label>
 					<textarea type="text" className="add-textarea" value={newDescription} onChange={(e) => setnewDescription(e.target.value)} onBlur={checkFormValidity} />
 					<div className="add-btn-div">
 						<button
