@@ -64,16 +64,16 @@ const Login = () => {
 			errorMessages.message);
 
 	return (
-		<form className='login-form'>
+		<form className='login-form' id='login'>
 			<section className='login-main'>
 				<div className="login-container">
 					<h1>Logga in</h1>
 					<div className='input-container'>
-						<label htmlFor="uname" className='login-label'>Användarnamn</label>
+						<label className='login-label'>Användarnamn</label>
 						<input type="text" id="uname" className='input-fields' ref={unameRef} />
 					</div>
 					<div className="input-container">
-						<label htmlFor="password" className='login-label'>Lösenord</label>
+						<label className='login-label'>Lösenord</label>
 						<input type="password" id="pass" className='input-fields' ref={passRef} />
 						{errorMessage && <p className="error-message">{errorMessage}</p>}
 					</div>

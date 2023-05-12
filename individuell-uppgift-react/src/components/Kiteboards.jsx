@@ -32,6 +32,9 @@ const Kiteboards = () => {
         <Sort className="sort-btn"/>
         </div>
       </div>
+      {filteredKiteboardProducts.length === 0 ? (
+        <p className="no-results">Inga sökresultat hittades :(</p>
+      ) : (
       <ul className="product-ul">
         {filteredKiteboardProducts.map((product) => (
           <li key={product.id} className="product-card">
@@ -44,6 +47,7 @@ const Kiteboards = () => {
           </li>
         ))}
       </ul>
+      )}
     </div>
   );
 };

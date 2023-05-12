@@ -34,6 +34,9 @@ const Surfboards = () => {
         <Sort className="sort-btn"/>
         </div>
       </div>
+      {filteredSkateboardProducts.length === 0 ? (
+        <p className="no-results">Inga sökresultat hittades :(</p>
+      ) : (
       <ul className="product-ul">
         {filteredSkateboardProducts.map((product) => (
           <li key={product.id} className="product-card">
@@ -46,6 +49,7 @@ const Surfboards = () => {
           </li>
         ))}
       </ul>
+      )}
     </div>
   );
 };

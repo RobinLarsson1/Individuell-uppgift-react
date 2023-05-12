@@ -34,6 +34,9 @@ const Longboards = () => {
         <Sort className="sort-btn"/>
         </div>
       </div>
+      {filteredLongboardProducts.length === 0 ? (
+        <p className="no-results">Inga sökresultat hittades :(</p>
+      ) : (
       <ul className="product-ul">
         {filteredLongboardProducts.map((product) => (
           <li key={product.id} className="product-card">
@@ -46,6 +49,7 @@ const Longboards = () => {
           </li>
         ))}
       </ul>
+      )}
     </div>
   );
 };

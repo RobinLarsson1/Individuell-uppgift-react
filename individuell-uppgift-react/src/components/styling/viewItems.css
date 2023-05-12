@@ -60,6 +60,9 @@ h1 {
 button {
 	height: 2em;
 }
+.no-results {
+	margin-top: 5em;
+}
 
 .admin-icon-div {
 	width: 100%;
